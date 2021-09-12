@@ -7,9 +7,8 @@ class img(Model):
 	image_upload  = ImageField(default = 'image', upload_to ='uploads/')
 	title = CharField(max_length=100)
 	characteristics = ListCharField(
-		base_field=CharField(max_length=10),
+		base_field=CharField(max_length=12),
         size=6,
-        max_length=(6 * 11)
+        max_length=(6 * 13)
 	)
-	description = TextField(null=True, blank=True)
 	price = DecimalField(decimal_places=2, max_digits=1000)

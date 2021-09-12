@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from searchImg.views import home_view, img_detail_view, img_create_view
 
 urlpatterns = [
+    path('', home_view, name='home'),
+    path('img/', img_detail_view, name='img_result'),
+    path('create/', img_create_view, name='img_result'),
+
     path('admin/', admin.site.urls),
+
 ]

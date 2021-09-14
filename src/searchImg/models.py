@@ -12,3 +12,6 @@ class img(Model):
         max_length=(6 * 13)
 	)
 	price = DecimalField(decimal_places=2, max_digits=1000)
+
+	def getChar(self):
+		return self.characteristics

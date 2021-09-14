@@ -11,4 +11,14 @@
 	<input type="text" name="title" placeholder="your title">
 	<input type="submit" value ="save">
 </form>
+
+{% for item in chara %}
+{% if item == 'happy' %}
+	<li>{{ forloop.counter }}</li>
+{% else %}
+	<li>{{ item|capfirst }}</li>
+{% endif %}
+<li>{{ forloop.counter}} - {{ item }}</li>
+{% endfor %}
+
 {% endblock %}

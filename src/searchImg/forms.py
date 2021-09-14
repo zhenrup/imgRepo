@@ -16,5 +16,5 @@ class imgForm(forms.ModelForm):
 class rawImgForm(forms.Form):
 	image_upload  = forms.ImageField()
 	title = forms.CharField()
-	characteristics = forms.ListCharField()
+	# characteristics = forms.ListCharField()
 	price = forms.DecimalField()

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import img
 from .forms import imgForm
-from django.shortcuts import HttpResponse
 from django.core.exceptions import *
+from django.views.generic import DetailView
+
 
 # Create your views here.
 def home_view(request, *args, **kwargs):
@@ -20,16 +21,32 @@ def img_detail_view(request):
 	if request.method == 'POST':
 		input = request.POST.get('imageSearch', None)
 		try:
-			imgObj = img.objects.get(title = input)
+			if len(input.split()) > 1:
+				imgObj = img.objects.get(title = input)
+				context = {
+					'obj': imgObj,
+					'errorM': 'more than one word'
+				}
+				return render(request, "returnImg.html", context)
+			else:
+				result = img.objects.get(title__contains=input)
+				context = {
+					'obj': result,
+					'errorM': 'one keyword'
+				}
+				return render(request, "returnImg.html", context)
+		except img.MultipleObjectsReturned:
+			result = img.objects.filter(title__contains=input)[0]
 			context = {
-				'obj': imgObj,
-			}
+					'obj': result,
+					'errorM': 'mulitiple results'
+				}
 			return render(request, "returnImg.html", context)
 		except img.DoesNotExist:
 			context = {
 				'errorM': "cannot find any image with this keyword",
 			}
-			return render(request, "returnImg.html", context)
+			return render(request, "noImg.html", context)
 
 	else:
 		return render(request, "returnImg.html")

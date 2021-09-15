@@ -16,12 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from searchImg.views import *
 
 urlpatterns = [
+    url(r'^$', home_view, name='home'),
     path('', home_view, name='home'),
+    url(r'^img/$', img_detail_view, name='search'),
     path('img/', img_detail_view, name='img_result'),
+    url(r'^create/$', img_create_view, name='createImg'),
     path('create/', img_create_view, name='img_form'),
 
     path('admin/', admin.site.urls),

@@ -27,44 +27,47 @@ def img_detail_view(request):
 					'obj': imgObj,
 					'errorM': 'more than one word'
 				}
-				return render(request, "returnImg.html", context)
+				return render(request, "imgReturn.html", context)
+
 			else:
 				result = img.objects.get(title__contains=input)
 				context = {
 					'obj': result,
 					'errorM': 'one keyword'
 				}
-				return render(request, "returnImg.html", context)
+				return render(request, "imgReturn.html", context)
+
 		except img.MultipleObjectsReturned:
 			result = img.objects.filter(title__contains=input)[0]
 			context = {
 					'obj': result,
 					'errorM': 'mulitiple results'
 				}
-			return render(request, "returnImg.html", context)
+			return render(request, "imgReturn.html", context)
+
 		except img.DoesNotExist:
 			context = {
 				'errorM': "cannot find any image with this keyword",
 			}
-			return render(request, "noImg.html", context)
+			return render(request, "imgReturn.html", context)
 
 	else:
-		return render(request, "returnImg.html")
+		return render(request, "searchImg.html")
 
 
 
 # allow user to create their own product
-# def img_create_view(request):
-# 	form = imgForm(request.POST or None)
-# 	if form.is_valid():
-# 		form.save()
-# 		form = imgForm()
-# 	context = {
-# 		'form': form,
-# 	}
-# 	return render(request, "img/img_create.html", context)
-
 def img_create_view(request):
-	
-	context = {}
+	form = imgForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		form = imgForm()
+	context = {
+		'form': form,
+	}
 	return render(request, "createImg.html", context)
+
+# def img_create_view(request):
+	
+# 	context = {}
+# 	return render(request, "createImg.html", context)

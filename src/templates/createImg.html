@@ -2,15 +2,11 @@
 
 {% block content %}
 <p>create your own product</p>
-<!-- <form method='POST'> {% csrf_token %}
+<form method='POST'> {% csrf_token %}
 	{{form.as_p}}
 	<input type="submit" value ="save">
-</form> -->
-
-<form method="POST"> {% csrf_token %}
-	<input type="text" name="title" placeholder="your title">
-	<input type="submit" value ="save">
 </form>
+
 
 {% for item in chara %}
 {% if item == 'happy' %}

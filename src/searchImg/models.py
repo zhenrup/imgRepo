@@ -1,4 +1,4 @@
-from django.db.models import ImageField, CharField, Model, TextField, DecimalField
+from django.db.models import ImageField, CharField, Model, IntegerField, DecimalField
 from django.db.models.fields import DecimalField
 from django_mysql.models import ListCharField
 
@@ -9,9 +9,11 @@ class img(Model):
 	characteristics = ListCharField(
 		base_field=CharField(max_length=12),
         size=6,
-        max_length=(6 * 13)
+        max_length=(6 * 13),
+		null=True
 	)
 	price = DecimalField(decimal_places=2, max_digits=1000)
+	discount = IntegerField(default = 0)
 	seller = CharField(null=True, max_length=50)
 
 	def getChar(self):

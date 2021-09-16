@@ -3,20 +3,8 @@
 
 {% block content %}
 
-<h1>home page</h1>
-<p>{{ title_name }}, {{ price }}</p>
-
-<ul>
-	{% for item in chara %}
-		{% if item == 'happy' %}
-			<li>{{ forloop.counter }}</li>
-		{% else %}
-			<li>{{ item|capfirst }}</li>
-		{% endif %}
-		<li>{{ forloop.counter}} - {{ item }}</li>
-	{% endfor %}
-</ul>
-
-
+<h1>HOME PAGE</h1>
+<h3>This repo is for 2022 Winter Shopify Developer Intern Challenge, built by ZP </h3>
+<h3>Project repo: <a href={https://github.com/zhenrup/imgRepo}>https://github.com/zhenrup/imgRepo</a></h3>
 
 {% endblock %}

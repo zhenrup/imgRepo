@@ -6,19 +6,45 @@
 
 <form method="POST"> 
 	{% csrf_token %}
-	<input type="text" name="imageSearch" placeholder="enter to search images">
-	<input type="submit" value ="Search Image">
+	<input type="text" name="imageSearch" class='imgS' placeholder="enter to search images">
+	<input type="submit"  class ='returnB'value ="Search Image">
 </form>
 
 <br><br>
 
+{% if obj|length > 1 %}
 
-<img src= "{{ obj.image_upload.url }}" alt="a beautiful image" width='250'>
+	{% for item in obj %}
+		{% if forloop.counter == 2 %}
+			<h2>similar images</h2>
+			<br>
+		{% endif %}
+		<img src= "/media/{{ item.1 }}" alt="a beautiful image" width='600'>
 
-<h1>Title: {{ obj.title}}</h1>
-<p>Seller: {{ obj.seller }}</p>
-<p>Price: {{ obj.price }}</p>
+		<h3>Title: {{ item.0 }}</h3>
+		<p>Seller: {{ item.3 }}</p>
+		<p>Price: {{ item.2 }}</p>
+		<br><br>
+
+	{% endfor %}
+
+{% elif obj|length == 1 %}
+	<img src= "/media/{{ obj.0.1 }}" alt="a beautiful image" width='600'>
+
+	<h3>Title: {{ obj.0.0 }}</h3>
+	<p>Seller: {{ obj.0.3 }}</p>
+	<p>Price: {{ obj.0.2 }}</p>
+	<br><br>
 
 
-<p>{{ errorM }}</p>
+{% else %}
+	<img src= "{{ obj.image_upload.url }}" alt="a beautiful image" width='250'>
+	<h3>WTF</h3>
+
+	<h3>Title: {{ obj.title}}</h3>
+	<p>Seller: {{ obj.seller }}</p>
+	<p>Price: {{ obj.price }}</p>
+{% endif %}
+
+<h3>{{ errorM }}</h3>
 {% endblock %}

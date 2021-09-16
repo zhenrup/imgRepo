@@ -8,9 +8,7 @@ from django.views.generic import DetailView
 # Create your views here.
 def home_view(request, *args, **kwargs):
 	my_context = {
-		"title_name": "a picture",
-		"price": 2.99,
-		"chara": ['happy', 'love', 'students']
+		
 	}
 
 	return render(request, "home.html", my_context)
@@ -25,31 +23,27 @@ def img_detail_view(request):
 				imgObj = img.objects.get(title = input)
 				context = {
 					'obj': imgObj,
-					'errorM': 'more than one word'
 				}
 				return render(request, "imgReturn.html", context)
 
 			else:
-				result = img.objects.get(title__contains=input)
-				context = {
-					'obj': result,
-					'errorM': 'one keyword'
-				}
-				return render(request, "imgReturn.html", context)
-
-		except img.MultipleObjectsReturned:
-			result = img.objects.filter(title__contains=input)[0]
-			context = {
-					'obj': result,
-					'errorM': 'mulitiple results'
-				}
-			return render(request, "imgReturn.html", context)
+				result = img.objects.filter(title__contains=input).values_list('title', 'image_upload', 'price', 'seller')
+				if len(result) == 0:
+					context = {
+					'errorM': "cannot find any image with this keyword",
+					}
+					return render(request, "searchImg.html", context)
+				else: 
+					context = {
+						'obj': result,
+					}
+					return render(request, "imgReturn.html", context)
 
 		except img.DoesNotExist:
 			context = {
-				'errorM': "cannot find any image with this keyword",
+				'errorM': "cannot find any image with this title",
 			}
-			return render(request, "imgReturn.html", context)
+			return render(request, "searchImg.html", context)
 
 	else:
 		return render(request, "searchImg.html")

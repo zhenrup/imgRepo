@@ -1,20 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p>create your own product</p>
+<h1>add and sell images</h1>
 <form method='POST'> {% csrf_token %}
 	{{form.as_p}}
 	<input type="submit" value ="save">
 </form>
 
 
-{% for item in chara %}
-{% if item == 'happy' %}
-	<li>{{ forloop.counter }}</li>
-{% else %}
-	<li>{{ item|capfirst }}</li>
-{% endif %}
-<li>{{ forloop.counter}} - {{ item }}</li>
-{% endfor %}
+
 
 {% endblock %}

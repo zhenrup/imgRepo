@@ -9,8 +9,9 @@ class imgForm(forms.ModelForm):
 		fields = [
 			'image_upload',
 			'title',
-			'characteristics',
-			'price'
+			'price',
+			'discount',
+			'seller'
 		]
 
 class rawImgForm(forms.Form):

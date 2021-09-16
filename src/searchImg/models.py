@@ -13,7 +13,7 @@ class img(Model):
 		null=True
 	)
 	price = DecimalField(decimal_places=2, max_digits=1000)
-	discount = IntegerField(default = 0)
+	discount = IntegerField(null = True)
 	seller = CharField(null=True, max_length=50)
 
 	def getChar(self):

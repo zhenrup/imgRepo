@@ -22,6 +22,7 @@ It is built using Django framework. It's implemented in Python 3.9.6 and has a s
 - django-mysql 4.0.0
 - Pillow       8.3.2
 - pip          21.1.3
+- python-decouple 3.4
 - pytz         2021.1
 - setuptools   57.0.0
 - sqlparse     0.4.2

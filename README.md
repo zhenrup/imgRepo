@@ -16,7 +16,7 @@ It is built using Django framework. It's implemented in Python 3.9.6 and has a s
 
 
 
-### List of Python Packages Installed in Virtual Environment
+### Pip List in Virtual Environment
 - sgiref      3.4.1
 - Django       3.2.7
 - django-mysql 4.0.0

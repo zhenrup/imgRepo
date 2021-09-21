@@ -16,7 +16,7 @@
 
 	{% for item in obj %}
 		{% if forloop.counter == 2 %}
-			<h2>similar images</h2>
+			<h2>Similar Images</h2>
 			<br>
 		{% endif %}
 		<img src= "/media/{{ item.1 }}" alt="a beautiful image" width='600'>
@@ -39,8 +39,6 @@
 
 {% else %}
 	<img src= "{{ obj.image_upload.url }}" alt="a beautiful image" width='250'>
-	<h3>WTF</h3>
-
 	<h3>Title: {{ obj.title}}</h3>
 	<p>Seller: {{ obj.seller }}</p>
 	<p>Price: {{ obj.price }}</p>

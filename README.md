@@ -1,6 +1,6 @@
 # imgRepo
 
-This project is created for 2022 Winter Shopify Backedn Developer Internship application, made by ZP. The idea of this project is to build an e-commerce website which serves both users and sellers.
+This project is created for 2022 Winter Shopify Backend Developer Internship application, made by ZP. The idea of this project is to build an e-commerce website which serves both users and sellers.
 It is built using Django framework. It's implemented in Python 3.9.6 and has a sqlite3 database to store all users and image related information.
 
 
